@@ -1,6 +1,7 @@
 ﻿
 using MAUIAndroidUIAutomationUtility.Helper;
 using MAUIAndroidUIAutomationUtility.AndroidTools;
+using MAUIAndroidUIAutomationUtility.iOSTools;
 
 
 namespace MAUIAndroidUIAutomationUtility;
@@ -105,35 +106,13 @@ namespace MAUIAndroidUIAutomationUtility;
             //WaitForEmulatorToBoot();
 
             Console.WriteLine($"Installing {project["SampleName"]} in to Simulator ");
-            //InstallApp(deviceId, appPath);
+            iOSTool.InstallApp("815F3742-98E7-4405-9611-EC74A30DB5F2", appPath);
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             Process.ExecuteCommand(TestRun);
 
             Console.WriteLine($"Closing emulator");
             Process.ExecuteCommand("adb emu kill");
-        }
-    }
-    public void InstallApp(string deviceId, string appPath)
-    {
-        try
-        {
-            if (string.IsNullOrEmpty(deviceId))
-            {
-                throw new ArgumentNullException(nameof(deviceId), "Error: Invalid or missing device ID.");
-            }
-
-            if (string.IsNullOrEmpty(appPath))
-            {
-                throw new ArgumentNullException(nameof(appPath), "Error: Invalid or missing application path.");
-            }
-
-            // Execute the command to install the application
-            Process.ExecuteCommand($"xcrun simctl install {deviceId} \"{appPath}\"");
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error installing application: {ex.Message}", ex);
         }
     }
 }
