@@ -13,8 +13,11 @@ class Program
         // Appium 1
         List<Dictionary<string, string>> projects = new List<Dictionary<string, string>>
         {
-        new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
-        new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
+        //new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
+        //new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_2_XL_API_28" } },
+        
+        new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "A345178C-6D96-4B7E-83BD-266E3B81B0F7" } },
+        new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "A345178C-6D96-4B7E-83BD-266E3B81B0F7" } },
         };
 
         foreach (var project in projects)
@@ -36,10 +39,17 @@ class Program
             string installCommand = $"adb install {appPath}/bin/Release/net9.0-android/publish/{project["ApplicationID"]}-Signed.apk";
             string TestRun = $"dotnet test {testPath}";
             Console.WriteLine($"Running commands for {project["ProjectName"]}...");
-
+            if(project["EmulatorCommand"] == "Pixel_5_API_33")
+            {
             Console.WriteLine($"Starting emulator : {project["EmulatorCommand"]}...");
             AndroidTool.BootDevice(project["EmulatorCommand"]);
-
+            }
+            else if(project["EmulatorCommand"] == "Pixel_2_XL_API_28")
+            {
+                AndroidTool.ShutdownDeviceCompletely("Pixel_5_API_33");
+                Console.WriteLine($"Starting emulator : {project["EmulatorCommand"]}...");
+                AndroidTool.BootDevice(project["EmulatorCommand"]);
+            }
             Console.WriteLine($"Starting {project["SampleName"]} build and publish");
             CommondExcecute.ExecuteCommand($"cd {appPath} && {publishCommand}");
 
@@ -48,8 +58,17 @@ class Program
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             CommondExcecute.ExecuteCommand(TestRun);
+            if(project["EmulatorCommand"] == "Pixel_5_API_33")
+            {
             Console.WriteLine($"Closing emulator");
             AndroidTool.ShutdownDevice(project["EmulatorCommand"]);
+            }
+            else if(project["EmulatorCommand"] == "Pixel_2_XL_API_28")
+            {
+            Console.WriteLine($"Closing emulator");
+            AndroidTool.ShutdownDevice(project["EmulatorCommand"]);
+            }
+
         }
 
         else if (project["Platform"] == "UITests.iOS")
@@ -62,16 +81,12 @@ class Program
             Console.WriteLine($"Running commands for {project["ProjectName"]}...");
 
             Console.WriteLine($"Starting simulator : {project["EmulatorCommand"]}...");
-            iOSTool.BootDevice(iphone13promax);
 
             Console.WriteLine($"Installing {project["SampleName"]} in to Simulator ");
-            iOSTool.InstallApp(iphone13promax, appPath);
+            iOSTool.InstallApp(project["EmulatorCommand"], appPath, project["SampleName"]);
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             CommondExcecute.ExecuteCommand(TestRun);
-
-            Console.WriteLine($"Closing simulator");
-            iOSTool.ShutdownDevice(iphone13promax);
         }
     }
 }

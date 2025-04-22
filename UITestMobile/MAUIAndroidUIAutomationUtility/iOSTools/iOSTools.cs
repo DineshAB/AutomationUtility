@@ -47,7 +47,7 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
             }
         }
 
-        public static void InstallApp(string deviceId, string appPath)
+        public static void InstallApp(string deviceId, string appPath, string applicationId)
         {
             try
             {
@@ -62,7 +62,10 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
                 }
 
                 // Execute the command to install the application
-                CommondExcecute.ExecuteCommand($"xcrun simctl install {deviceId} \"{appPath}\"");
+                var iosinstall = "dotnet build -f net9.0-ios -p:_DeviceName=:v2:udid="+deviceId;
+                var iosinstall2 = $"xcrun simctl install {deviceId} {appPath}/bin/Debug/net9.0-ios/iossimulator-x64/{applicationId}.app";
+                CommondExcecute.ExecuteCommand($"cd {appPath} && {iosinstall}");
+                CommondExcecute.ExecuteCommand(iosinstall2);
             }
             catch (Exception ex)
             {

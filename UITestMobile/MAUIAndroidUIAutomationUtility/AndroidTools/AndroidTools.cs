@@ -205,7 +205,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
             }
         }
 
-        public static void ShutdownDeviceCompelteLy(string avdName)
+        public static void ShutdownDeviceCompletely(string avdName)
         {
             try
             {
@@ -224,7 +224,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
             CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
             CommondExcecute.ExecuteCommand($"adb emu kill");
             CommondExcecute.ExecuteCommand("adb kill-server");
-                
+            
 
             Console.WriteLine("All emulator instances have been shut down.");
             }
