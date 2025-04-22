@@ -41,15 +41,15 @@ class Program
             AndroidTool.BootDevice("Pixel_5_API_33");
 
             Console.WriteLine($"Starting {project["SampleName"]} build and publish");
-            Process.ExecuteCommand($"cd {appPath} && {publishCommand}");
+            CommondExcecute.ExecuteCommand($"cd {appPath} && {publishCommand}");
 
             Console.WriteLine($"Installing {project["SampleName"]} in to emulator");
-            Process.ExecuteCommand(installCommand);
+            CommondExcecute.ExecuteCommand(installCommand);
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
-            Process.ExecuteCommand(TestRun);
+            CommondExcecute.ExecuteCommand(TestRun);
             Console.WriteLine($"Closing emulator");
-            Process.ExecuteCommand("adb emu kill");
+            CommondExcecute.ExecuteCommand("adb emu kill");
         }
 
         else if (project["Platform"] == "UITests.iOS")
@@ -68,7 +68,7 @@ class Program
             iOSTool.InstallApp(iphone13promax, appPath);
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
-            Process.ExecuteCommand(TestRun);
+            CommondExcecute.ExecuteCommand(TestRun);
 
             Console.WriteLine($"Closing simulator");
             iOSTool.ShutdownDevice(iphone13promax);

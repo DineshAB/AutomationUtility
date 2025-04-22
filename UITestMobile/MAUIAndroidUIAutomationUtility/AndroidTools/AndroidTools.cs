@@ -24,7 +24,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 }
 
                 // Execute the adb install command
-                Process.ExecuteCommand($"adb -s {deviceSerial} install \"{appPath}\"");
+                CommondExcecute.ExecuteCommand($"adb -s {deviceSerial} install \"{appPath}\"");
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
 
                 var packages = new List<string>();
 
-                string result = Process.ExecuteCommand($"adb -s {deviceSerial} shell pm list packages");
+                string result = CommondExcecute.ExecuteCommand($"adb -s {deviceSerial} shell pm list packages");
 
                 string[] lines = result.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
@@ -94,7 +94,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 }
 
                 var devices = new List<AdbDevice>();
-                string result = Process.ExecuteCommand("adb devices -l");
+                string result = CommondExcecute.ExecuteCommand("adb devices -l");
 
                 string[] lines = result.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
@@ -149,9 +149,14 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                     throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
                 }
 
+<<<<<<< Updated upstream
                 // Execute the command to start the emulator
                 Process.ExecuteCommand($"emulator -avd {avdName}");
                 Process.ExecuteCommand($"-c \"adb shell getprop sys.boot_completed\"");
+=======
+                // Execute the adb command to kill the emulator
+                CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
+>>>>>>> Stashed changes
             }
             catch (Exception ex)
             {
@@ -174,7 +179,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 }
 
                 // Execute the adb command to kill the emulator
-                Process.ExecuteCommand($"adb -s {avdName} emu kill");
+                CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
             }
             catch (Exception ex)
             {

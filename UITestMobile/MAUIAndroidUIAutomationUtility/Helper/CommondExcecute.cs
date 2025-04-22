@@ -7,21 +7,11 @@ using System.Threading.Tasks;
 
 namespace MAUIAndroidUIAutomationUtility.Helper
 {
-    public static class Process
+    public static class CommondExcecute
     {
-        public static string ExecuteCommand(string command)
+        public static void ExecuteCommand(string command)
         {
-            var process = StartProcess(command);
-
-            string output = process.StandardOutput.ReadToEnd();
-
-            process.WaitForExit();
-
-            return output;
-        }
-        public static System.Diagnostics.Process StartProcess(string command)
-        {
-            var process = new System.Diagnostics.Process
+            Process process = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -30,13 +20,20 @@ namespace MAUIAndroidUIAutomationUtility.Helper
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
-                    CreateNoWindow = true
+                    CreateNoWindow = true,
                 }
             };
 
             process.Start();
+            string result = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
 
-            return process;
+            Console.WriteLine(result);
+            if (!string.IsNullOrEmpty(error))
+            {
+                Console.WriteLine("Error: " + error);
+            }
         }
     }
 }

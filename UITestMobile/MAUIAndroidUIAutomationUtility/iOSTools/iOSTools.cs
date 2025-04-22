@@ -19,7 +19,7 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
                 }
 
                 // Execute the command to boot the simulator device
-                Process.ExecuteCommand($"xcrun simctl boot {deviceId}");
+                CommondExcecute.ExecuteCommand($"xcrun simctl boot {deviceId}");
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
                 }
 
                 // Execute the command to shut down the simulator device
-                Process.ExecuteCommand($"xcrun simctl shutdown {deviceId}");
+                CommondExcecute.ExecuteCommand($"xcrun simctl shutdown {deviceId}");
             }
             catch (Exception ex)
             {
@@ -59,7 +59,7 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
                 }
 
                 // Execute the command to install the application
-                Process.ExecuteCommand($"xcrun simctl install {deviceId} \"{appPath}\"");
+                CommondExcecute.ExecuteCommand($"xcrun simctl install {deviceId} \"{appPath}\"");
             }
             catch (Exception ex)
             {
