@@ -49,7 +49,7 @@ class Program
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             CommondExcecute.ExecuteCommand(TestRun);
             Console.WriteLine($"Closing emulator");
-            CommondExcecute.ExecuteCommand("adb emu kill");
+            AndroidTool.ShutdownDevice("Pixel_5_API_33");
         }
 
         else if (project["Platform"] == "UITests.iOS")
