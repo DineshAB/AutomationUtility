@@ -1,4 +1,5 @@
 ﻿using MAUIAndroidUIAutomationUtility.Helper;
+using System.Diagnostics;
 
 namespace MAUIAndroidUIAutomationUtility.AndroidTools
 {
@@ -47,7 +48,8 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
 
                 var packages = new List<string>();
 
-                string result = CommondExcecute.ExecuteCommand($"adb -s {deviceSerial} shell pm list packages");
+                string result = $"adb -s {deviceSerial} shell pm list packages";
+                CommondExcecute.ExecuteCommand(result);
 
                 string[] lines = result.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
@@ -94,7 +96,8 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 }
 
                 var devices = new List<AdbDevice>();
-                string result = CommondExcecute.ExecuteCommand("adb devices -l");
+                string result = "adb devices -l";
+                CommondExcecute.ExecuteCommand(result);
 
                 string[] lines = result.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
@@ -148,15 +151,27 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 {
                     throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
                 }
+                string emulatorCommand = $"emulator -avd {avdName}";
+                Process process = new Process()
 
-<<<<<<< Updated upstream
-                // Execute the command to start the emulator
-                Process.ExecuteCommand($"emulator -avd {avdName}");
-                Process.ExecuteCommand($"-c \"adb shell getprop sys.boot_completed\"");
-=======
-                // Execute the adb command to kill the emulator
-                CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
->>>>>>> Stashed changes
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "/bin/bash",
+
+                        Arguments = $"-c \"{emulatorCommand} &\"", // Run in background
+
+                        RedirectStandardOutput = false,
+
+                        RedirectStandardError = false,
+
+                        UseShellExecute = false,
+
+                        CreateNoWindow = true,
+                    }
+                };
+                process.Start();
+                WaitForEmulatorToBoot();
             }
             catch (Exception ex)
             {
@@ -198,6 +213,37 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
             }
 
             return string.Empty;
+        }
+        static void WaitForEmulatorToBoot()
+        {
+            Console.WriteLine("Waiting for emulator to boot...");
+            while (true)
+            {
+                Process process = new Process()
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "/bin/bash",
+
+                        Arguments = "-c \"adb shell getprop sys.boot_completed\"",
+
+                        RedirectStandardOutput = true,
+
+                        UseShellExecute = false,
+
+                        CreateNoWindow = true,
+
+                    }
+                };
+                process.Start();
+                string output = process.StandardOutput.ReadToEnd().Trim();
+                process.WaitForExit();
+                if (output == "1") break;
+                Thread.Sleep(5000); // Wait for 5 seconds before checking again
+            }
+
+            Console.WriteLine("Emulator booted successfully!");
+
         }
 
     }
