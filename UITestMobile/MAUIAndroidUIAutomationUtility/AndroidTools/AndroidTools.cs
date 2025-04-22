@@ -149,8 +149,9 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                     throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
                 }
 
-                // Execute the adb command to kill the emulator
-                Process.ExecuteCommand($"adb -s {avdName} emu kill");
+                // Execute the command to start the emulator
+                Process.ExecuteCommand($"emulator -avd {avdName}");
+                Process.ExecuteCommand($"-c \"adb shell getprop sys.boot_completed\"");
             }
             catch (Exception ex)
             {
