@@ -14,7 +14,7 @@ class Program
         List<Dictionary<string, string>> projects = new List<Dictionary<string, string>>
         {
         new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
-        new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "iPhone 13 Pro Max" } },
+        new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
         };
 
         foreach (var project in projects)
@@ -38,7 +38,7 @@ class Program
             Console.WriteLine($"Running commands for {project["ProjectName"]}...");
 
             Console.WriteLine($"Starting emulator : {project["EmulatorCommand"]}...");
-            AndroidTool.BootDevice("Pixel_5_API_33");
+            AndroidTool.BootDevice(project["EmulatorCommand"]);
 
             Console.WriteLine($"Starting {project["SampleName"]} build and publish");
             CommondExcecute.ExecuteCommand($"cd {appPath} && {publishCommand}");
@@ -49,7 +49,7 @@ class Program
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             CommondExcecute.ExecuteCommand(TestRun);
             Console.WriteLine($"Closing emulator");
-            AndroidTool.ShutdownDevice("Pixel_5_API_33");
+            AndroidTool.ShutdownDevice(project["EmulatorCommand"]);
         }
 
         else if (project["Platform"] == "UITests.iOS")

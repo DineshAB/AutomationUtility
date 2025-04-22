@@ -183,22 +183,54 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
         {
             try
             {
-                if (!Adb.CheckAdbInstalled())
-                {
-                    throw new Exception("ADB is not installed or not in PATH. Please install ADB and ensure it is in your PATH.");
-                }
+            if (!Adb.CheckAdbInstalled())
+            {
+                throw new Exception("ADB is not installed or not in PATH. Please install ADB and ensure it is in your PATH.");
+            }
 
-                if (string.IsNullOrEmpty(avdName))
-                {
-                    throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
-                }
+            if (string.IsNullOrEmpty(avdName))
+            {
+                throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
+            }
 
-                // Execute the adb command to kill the emulator
-                CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
+            // Kill all running emulator instances
+
+            CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
+
+            Console.WriteLine(avdName+" emulator instances have been shut down.");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error shutting down the device: {ex.Message}");
+            throw new Exception($"Error shutting down the device:"+avdName+" {ex.Message}");
+            }
+        }
+
+        public static void ShutdownDeviceCompelteLy(string avdName)
+        {
+            try
+            {
+            if (!Adb.CheckAdbInstalled())
+            {
+                throw new Exception("ADB is not installed or not in PATH. Please install ADB and ensure it is in your PATH.");
+            }
+
+            if (string.IsNullOrEmpty(avdName))
+            {
+                throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
+            }
+
+            // Kill all running emulator instances
+
+            CommondExcecute.ExecuteCommand($"adb -s {avdName} emu kill");
+            CommondExcecute.ExecuteCommand($"adb emu kill");
+            CommondExcecute.ExecuteCommand("adb kill-server");
+                
+
+            Console.WriteLine("All emulator instances have been shut down.");
+            }
+            catch (Exception ex)
+            {
+            throw new Exception($"Error shutting down the device: {ex.Message}");
             }
         }
 
