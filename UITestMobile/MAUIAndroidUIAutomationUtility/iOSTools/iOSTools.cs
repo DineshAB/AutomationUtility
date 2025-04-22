@@ -9,6 +9,41 @@ namespace MAUIAndroidUIAutomationUtility.iOSTools
 {
     public static class iOSTool
     {
+        public static void BootDevice(string deviceId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(deviceId))
+                {
+                    throw new ArgumentNullException(nameof(deviceId), "Error: Invalid or missing device ID.");
+                }
+
+                // Execute the command to boot the simulator device
+                Process.ExecuteCommand($"xcrun simctl boot {deviceId}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error booting the simulator device: {ex.Message}", ex);
+            }
+        }
+        public static void ShutdownDevice(string deviceId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(deviceId))
+                {
+                    throw new ArgumentNullException(nameof(deviceId), "Error: Invalid or missing device ID.");
+                }
+
+                // Execute the command to shut down the simulator device
+                Process.ExecuteCommand($"xcrun simctl shutdown {deviceId}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error shutting down the simulator device: {ex.Message}", ex);
+            }
+        }
+
         public static void InstallApp(string deviceId, string appPath)
         {
             try
