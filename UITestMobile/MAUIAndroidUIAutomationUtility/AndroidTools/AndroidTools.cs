@@ -151,7 +151,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 {
                     throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
                 }
-                string emulatorCommand = $"emulator -avd {avdName}";
+                string emulatorCommand = $"$ANDROID_HOME/emulator/emulator -avd {avdName}";
                 Process process = new Process()
 
                 {
