@@ -9,20 +9,41 @@ class Program
 {
     static void Main()
     {
-        string documentFolder= "/Users/aravindkannanarayanarao/Documents";
+        string documentFolder= "/Users/aravindkann/Documents";
         // Appium 1
         List<Dictionary<string, string>> projects = new List<Dictionary<string, string>>
         {
 
         //Android platform
 
-        new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5_API_33" } },
-        new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_2_XL_API_28" } },
-        
+        new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "BindingAndEvents" }, { "ApplicationID", "com.companyname.bindingandevents" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel535" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "CRbugs" }, { "ApplicationID", "com.companyname.crbugs" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "EmptyView" }, { "ApplicationID", "com.companyname.emptyview" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "HeaderAndFooter" }, { "ApplicationID", "com.companyname.headerandfooter" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewHeaderAndFooter" }, { "ApplicationID", "com.companyname.MAUISfListViewHeaderAndFooter" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewHeaderFooter" }, { "ApplicationID", "com.companyname.MAUISfListViewHeaderFooter" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewItemSize" }, { "ApplicationID", "com.companyname.mauisflistviewitemsize" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewLayouts" }, { "ApplicationID", "com.companyname.mauisflistviewlayouts" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewQueryItemSize" }, { "ApplicationID", "com.companyname.mauisflistviewqueryitemsize" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "mauisflistviewsortgroupfilter" }, { "ApplicationID", "com.companyname.maui.sflistview.recorditems" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewRTL" }, { "ApplicationID", "com.companyname.mauisflistviewrtl" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewSelection" }, { "ApplicationID", "com.companyname.mauisflistviewselection" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewSortGroupFilter" }, { "ApplicationID", "com.companyname.mauisflistviewsortgroupfilter" }, { "Platform", "UITests.Android" }, { "EmulatorCommand", "Pixel_5" } },           
         //iOS platform
 
-         new Dictionary<string, string> { { "ProjectName", "maui-chat-tests" }, { "SampleName", "SfChatSample" }, { "ApplicationID", "com.companyname.sfchatsample" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "A345178C-6D96-4B7E-83BD-266E3B81B0F7" } },
-         new Dictionary<string, string> { { "ProjectName", "BusyIndicator-MAUI-tests" }, { "SampleName", "SfBusyIndicatorSample" }, { "ApplicationID", "com.companyname.SfBusyIndicatorSample" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "A345178C-6D96-4B7E-83BD-266E3B81B0F7" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "BindingAndEvents" }, { "ApplicationID", "com.companyname.bindingandevents" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "CRbugs" }, { "ApplicationID", "com.companyname.crbugs" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "EmptyView" }, { "ApplicationID", "com.companyname.emptyview" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "HeaderAndFooter" }, { "ApplicationID", "com.companyname.headerandfooter" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewHeaderAndFooter" }, { "ApplicationID", "com.companyname.MAUISfListViewHeaderAndFooter" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewHeaderFooter" }, { "ApplicationID", "com.companyname.MAUISfListViewHeaderFooter" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewItemSize" }, { "ApplicationID", "com.companyname.mauisflistviewitemsize" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewLayouts" }, { "ApplicationID", "com.companyname.mauisflistviewlayouts" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewQueryItemSize" }, { "ApplicationID", "com.companyname.mauisflistviewqueryitemsize" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "mauisflistviewsortgroupfilter" }, { "ApplicationID", "com.companyname.maui.sflistview.recorditems" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewRTL" }, { "ApplicationID", "com.companyname.mauisflistviewrtl" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewSelection" }, { "ApplicationID", "com.companyname.mauisflistviewselection" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
+        // new Dictionary<string, string> { { "ProjectName", "maui-listview-tests" }, { "SampleName", "MAUISfListViewSortGroupFilter" }, { "ApplicationID", "com.companyname.mauisflistviewsortgroupfilter" }, { "Platform", "UITests.iOS" }, { "EmulatorCommand", "2EE8CBD0-4E77-4574-810A-C19A1D9E050D" } },
         
         //MacCatalyst platform
 
@@ -46,17 +67,17 @@ class Program
             string appPath = $"{documentFolder}/Appium/{project["ProjectName"]}/UITest/Appium/{project["SampleName"]}/{project["SampleName"]}";
             string testPath = $"{documentFolder}/Appium/{project["ProjectName"]}/UITest/Appium/{project["SampleName"]}/{project["Platform"]}";
             string publishCommand = "dotnet publish -f net9.0-android -c Release -p:AndroidKeyStore=true -p:AndroidSigningKeyStore=key.keystore -p:AndroidSigningKeyAlias=MauiAlias -p:AndroidSigningKeyPass=kanna007 -p:AndroidSigningStorePass=kanna007";
-            string installCommand = $"adb install {appPath}/bin/Release/net9.0-android/publish/{project["ApplicationID"]}-Signed.apk";
+            string installCommand = $"/Users/aravindkann/Library/Android/sdk/platform-tools/adb install {appPath}/bin/Release/net9.0-android/publish/{project["ApplicationID"]}-Signed.apk";
             string TestRun = $"dotnet test {testPath}";
             Console.WriteLine($"Running commands for {project["ProjectName"]}...");
-            if(project["EmulatorCommand"] == "Pixel_5_API_33")
+            if(project["EmulatorCommand"] == "Pixel535")
             {
             Console.WriteLine($"Starting emulator : {project["EmulatorCommand"]}...");
             AndroidTool.BootDevice(project["EmulatorCommand"]);
             }
-            else if(project["EmulatorCommand"] == "Pixel_2_XL_API_28")
+            else if(project["EmulatorCommand"] == "Pixel_2")
             {
-                AndroidTool.ShutdownDeviceCompletely("Pixel_5_API_33");
+                AndroidTool.ShutdownDeviceCompletely("Pixel_535");
                 Console.WriteLine($"Starting emulator : {project["EmulatorCommand"]}...");
                 AndroidTool.BootDevice(project["EmulatorCommand"]);
             }
@@ -68,12 +89,13 @@ class Program
 
             Console.WriteLine($"UITest started for project : {project["SampleName"]} Sample : {project["SampleName"]} Platform : {project["Platform"]} ");
             CommondExcecute.ExecuteCommand(TestRun);
-            if(project["EmulatorCommand"] == "Pixel_5_API_33")
+            if(project["EmulatorCommand"] == "Pixel535")
             {
+            //AndroidTool.ShutdownDeviceCompletely("Pixel_535");
             Console.WriteLine($"Closing emulator");
             AndroidTool.ShutdownDevice(project["EmulatorCommand"]);
             }
-            else if(project["EmulatorCommand"] == "Pixel_2_XL_API_28")
+            else if(project["EmulatorCommand"] == "Pixel_2")
             {
             Console.WriteLine($"Closing emulator");
             AndroidTool.ShutdownDevice(project["EmulatorCommand"]);

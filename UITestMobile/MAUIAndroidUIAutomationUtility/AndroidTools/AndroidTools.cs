@@ -1,10 +1,12 @@
 ﻿using MAUIAndroidUIAutomationUtility.Helper;
+using NuGet;
 using System.Diagnostics;
 
 namespace MAUIAndroidUIAutomationUtility.AndroidTools
 {
     public static class AndroidTool
     {
+        static string AndroidHome ="/Users/aravindkann/Library/Android/sdk";
         public static void InstallApp(string deviceSerial, string appPath)
         {
             try
@@ -151,7 +153,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 {
                     throw new ArgumentNullException(nameof(avdName), "Error: Device name is missing or invalid.");
                 }
-                string emulatorCommand = $"$ANDROID_HOME/emulator/emulator -avd {avdName}";
+                string emulatorCommand = $"{AndroidHome}/emulator/emulator -avd {avdName}";
                 Process process = new Process()
 
                 {
@@ -270,7 +272,7 @@ namespace MAUIAndroidUIAutomationUtility.AndroidTools
                 process.Start();
                 string output = process.StandardOutput.ReadToEnd().Trim();
                 process.WaitForExit();
-                if (output == "1") break;
+                if (output == "1" || output.IsEmpty()) break;
                 Thread.Sleep(5000); // Wait for 5 seconds before checking again
             }
 
